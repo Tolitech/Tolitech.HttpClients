@@ -18,185 +18,193 @@ public abstract class BaseHttpService(HttpClient httpClient)
     /// <summary>
     /// Sends a POST request to the specified URL with the provided body and headers.
     /// </summary>
-    /// <typeparam name="TRequest">The type of the request expected.</typeparam>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="body">The request body.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    internal async Task<Result<TResponse>> PostAsync<TRequest, TResponse>(
-        string url,
-        TRequest body,
+    protected async Task<Result<TResponse>> PostAsync<TResponse>(
+        Uri uri,
+        IRequest body,
         CancellationToken cancellationToken = default)
-            where TRequest : IRequest
             where TResponse : IResponse
     {
-        return await SendRequestAsync<TResponse>(HttpMethod.Post, url, body, null, cancellationToken).ConfigureAwait(false);
+        ArgumentNullException.ThrowIfNull(uri);
+
+        return await SendRequestAsync<TResponse>(HttpMethod.Post, uri, body, null, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
     /// Sends a POST request to the specified URL with the provided body and headers.
     /// </summary>
-    /// <typeparam name="TRequest">The type of the request expected.</typeparam>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="body">The request body.</param>
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    internal async Task<Result<TResponse>> PostAsync<TRequest, TResponse>(
-        string url,
-        TRequest body,
+    protected async Task<Result<TResponse>> PostAsync<TResponse>(
+        Uri uri,
+        IRequest body,
         IDictionary<string, string>? additionalHeaders = null,
         CancellationToken cancellationToken = default)
-            where TRequest : IRequest
             where TResponse : IResponse
     {
-        return await SendRequestAsync<TResponse>(HttpMethod.Post, url, body, additionalHeaders, cancellationToken).ConfigureAwait(false);
+        ArgumentNullException.ThrowIfNull(uri);
+
+        return await SendRequestAsync<TResponse>(HttpMethod.Post, uri, body, additionalHeaders, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
     /// Sends a PUT request to the specified URL with the provided body and headers.
     /// </summary>
-    /// <typeparam name="TRequest">The type of the request expected.</typeparam>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="body">The request body.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    internal async Task<Result<TResponse>> PutAsync<TRequest, TResponse>(
-        string url,
-        TRequest body,
+    protected async Task<Result<TResponse>> PutAsync<TResponse>(
+        Uri uri,
+        IRequest body,
         CancellationToken cancellationToken = default)
-            where TRequest : IRequest
             where TResponse : IResponse
     {
-        return await SendRequestAsync<TResponse>(HttpMethod.Put, url, body, null, cancellationToken).ConfigureAwait(false);
+        ArgumentNullException.ThrowIfNull(uri);
+
+        return await SendRequestAsync<TResponse>(HttpMethod.Put, uri, body, null, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
     /// Sends a PUT request to the specified URL with the provided body and headers.
     /// </summary>
-    /// <typeparam name="TRequest">The type of the request expected.</typeparam>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="body">The request body.</param>
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    internal async Task<Result<TResponse>> PutAsync<TRequest, TResponse>(
-        string url,
-        TRequest body,
+    protected async Task<Result<TResponse>> PutAsync<TResponse>(
+        Uri uri,
+        IRequest body,
         IDictionary<string, string>? additionalHeaders = null,
         CancellationToken cancellationToken = default)
-            where TRequest : IRequest
             where TResponse : IResponse
     {
-        return await SendRequestAsync<TResponse>(HttpMethod.Put, url, body, additionalHeaders, cancellationToken).ConfigureAwait(false);
+        ArgumentNullException.ThrowIfNull(uri);
+
+        return await SendRequestAsync<TResponse>(HttpMethod.Put, uri, body, additionalHeaders, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
     /// Sends a PATCH request to the specified URL with the provided body and headers.
     /// </summary>
-    /// <typeparam name="TRequest">The type of the request expected.</typeparam>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="body">The request body.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    internal async Task<Result<TResponse>> PatchAsync<TRequest, TResponse>(
-        string url,
-        TRequest body,
+    protected async Task<Result<TResponse>> PatchAsync<TResponse>(
+        Uri uri,
+        IRequest body,
         CancellationToken cancellationToken = default)
-            where TRequest : IRequest
             where TResponse : IResponse
     {
-        return await SendRequestAsync<TResponse>(HttpMethod.Patch, url, body, null, cancellationToken).ConfigureAwait(false);
+        ArgumentNullException.ThrowIfNull(uri);
+
+        return await SendRequestAsync<TResponse>(HttpMethod.Patch, uri, body, null, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
     /// Sends a PATCH request to the specified URL with the provided body and headers.
     /// </summary>
-    /// <typeparam name="TRequest">The type of the request expected.</typeparam>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="body">The request body.</param>
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    internal async Task<Result<TResponse>> PatchAsync<TRequest, TResponse>(
-        string url,
-        TRequest body,
+    protected async Task<Result<TResponse>> PatchAsync<TResponse>(
+        Uri uri,
+        IRequest body,
         IDictionary<string, string>? additionalHeaders = null,
         CancellationToken cancellationToken = default)
-            where TRequest : IRequest
             where TResponse : IResponse
     {
-        return await SendRequestAsync<TResponse>(HttpMethod.Patch, url, body, additionalHeaders, cancellationToken).ConfigureAwait(false);
+        ArgumentNullException.ThrowIfNull(uri);
+
+        return await SendRequestAsync<TResponse>(HttpMethod.Patch, uri, body, additionalHeaders, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
     /// Sends a DELETE request to the specified URL with the provided headers.
     /// </summary>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    internal async Task<Result<TResponse>> DeleteAsync<TResponse>(
-        string url,
+    protected async Task<Result<TResponse>> DeleteAsync<TResponse>(
+        Uri uri,
         CancellationToken cancellationToken = default)
             where TResponse : IResponse
     {
-        return await SendRequestAsync<TResponse>(HttpMethod.Delete, url, null, null, cancellationToken).ConfigureAwait(false);
+        ArgumentNullException.ThrowIfNull(uri);
+
+        return await SendRequestAsync<TResponse>(HttpMethod.Delete, uri, null, null, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
     /// Sends a DELETE request to the specified URL with the provided headers.
     /// </summary>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    internal async Task<Result<TResponse>> DeleteAsync<TResponse>(
-        string url,
+    protected async Task<Result<TResponse>> DeleteAsync<TResponse>(
+        Uri uri,
         IDictionary<string, string>? additionalHeaders = null,
         CancellationToken cancellationToken = default)
             where TResponse : IResponse
     {
-        return await SendRequestAsync<TResponse>(HttpMethod.Delete, url, null, additionalHeaders, cancellationToken).ConfigureAwait(false);
+        ArgumentNullException.ThrowIfNull(uri);
+
+        return await SendRequestAsync<TResponse>(HttpMethod.Delete, uri, null, additionalHeaders, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
     /// Sends a GET request to the specified URL with the provided headers.
     /// </summary>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    internal async Task<Result<TResponse>> GetAsync<TResponse>(
-        string url,
+    protected async Task<Result<TResponse>> GetAsync<TResponse>(
+        Uri uri,
         CancellationToken cancellationToken = default)
             where TResponse : IResponse
     {
-        return await SendRequestAsync<TResponse>(HttpMethod.Get, url, null, null, cancellationToken).ConfigureAwait(false);
+        ArgumentNullException.ThrowIfNull(uri);
+
+        return await SendRequestAsync<TResponse>(HttpMethod.Get, uri, null, null, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
     /// Sends a GET request to the specified URL with the provided headers.
     /// </summary>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    internal async Task<Result<TResponse>> GetAsync<TResponse>(
-        string url,
+    protected async Task<Result<TResponse>> GetAsync<TResponse>(
+        Uri uri,
         IDictionary<string, string>? additionalHeaders = null,
         CancellationToken cancellationToken = default)
             where TResponse : IResponse
     {
-        return await SendRequestAsync<TResponse>(HttpMethod.Get, url, null, additionalHeaders, cancellationToken).ConfigureAwait(false);
+        ArgumentNullException.ThrowIfNull(uri);
+
+        return await SendRequestAsync<TResponse>(HttpMethod.Get, uri, null, additionalHeaders, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>
@@ -227,27 +235,22 @@ public abstract class BaseHttpService(HttpClient httpClient)
     /// </summary>
     /// <typeparam name="TResponse">The type of the response expected.</typeparam>
     /// <param name="method">The HTTP method (POST, PUT, PATCH, GET, DELETE).</param>
-    /// <param name="url">The endpoint URL.</param>
+    /// <param name="uri">The endpoint URI.</param>
     /// <param name="body">The request body (optional).</param>
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
     private async Task<Result<TResponse>> SendRequestAsync<TResponse>(
         HttpMethod method,
-        string url,
-        object? body,
+        Uri uri,
+        IRequest? body,
         IDictionary<string, string>? additionalHeaders = null,
         CancellationToken cancellationToken = default)
             where TResponse : IResponse
     {
         Result<TResponse> result = new();
 
-        if (string.IsNullOrWhiteSpace(url))
-        {
-            return result.BadRequest();
-        }
-
-        using HttpRequestMessage requestMessage = new(method, url);
+        using HttpRequestMessage requestMessage = new(method, uri);
 
         // Add headers
         AddHeaders(requestMessage, additionalHeaders);
