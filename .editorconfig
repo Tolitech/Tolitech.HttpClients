@@ -36,6 +36,9 @@ dotnet_diagnostic.CA1034.severity = silent
 # CA1040: Avoid empty interfaces
 dotnet_diagnostic.CA1040.severity = silent
 
+# CA1054: URI-like parameters should not be strings
+dotnet_diagnostic.CA1054.severity = silent
+
 # SA1633: File should have header
 dotnet_diagnostic.SA1633.severity = silent
 
