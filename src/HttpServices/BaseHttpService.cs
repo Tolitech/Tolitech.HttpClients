@@ -243,7 +243,7 @@ public abstract class BaseHttpService(HttpClient httpClient)
         return request is null
             ? null
             : new StringContent(
-                JsonSerializer.Serialize(request),
+                JsonSerializer.Serialize(request, JsonSerializerOptions.Web),
                 Encoding.UTF8,
                 "application/json");
     }
@@ -294,8 +294,17 @@ public abstract class BaseHttpService(HttpClient httpClient)
                     : result.OK(responseData).WithStatusCode((StatusCode)response.StatusCode);
             }
 
-            // Handle error response
-            await result.ReadProblemDetailsAsync(response).ConfigureAwait(false);
+            if (response.Content.Headers.ContentType?.MediaType == "application/problem+json")
+            {
+                // Handle error response
+                await result.ReadProblemDetailsAsync(response).ConfigureAwait(false);
+                return result;
+            }
+
+            string errorContent = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+
+            result.WithDetail(errorContent)
+                .WithStatusCode((StatusCode)response.StatusCode);
         }
         catch (Exception ex)
         {
