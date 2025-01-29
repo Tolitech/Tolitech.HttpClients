@@ -51,7 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HttpServices.Abstractions\Tolitech.HttpClients.Abstractions.csproj" />
+    <ProjectReference Include="..\HttpClients.Abstractions\Tolitech.HttpClients.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
