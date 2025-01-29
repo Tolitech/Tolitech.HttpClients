@@ -6,9 +6,9 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
-    <Version>1.0.0-preview.6</Version>
+    <Version>1.0.0-preview.1</Version>
     <Authors>Tolitech</Authors>
-    <Description>Generic HTTP service implementation for .NET, based on Tolitech.HttpServices.Abstractions, with full support for JSON and custom headers.</Description>
+    <Description>Generic HTTP client implementation for .NET, based on Tolitech.HttpClients.Abstractions, with full support for JSON and custom headers.</Description>
     <Copyright>Copyright (c) 2025 Tolitech</Copyright>
     <PackageProjectUrl>https://www.tolitech.com.br</PackageProjectUrl>
     <PackageIcon>tolitech-icon.png</PackageIcon>
@@ -51,7 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HttpServices.Abstractions\Tolitech.HttpServices.Abstractions.csproj" />
+    <ProjectReference Include="..\HttpServices.Abstractions\Tolitech.HttpClients.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

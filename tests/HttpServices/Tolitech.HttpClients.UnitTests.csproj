@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\HttpServices\Tolitech.HttpServices.csproj" />
+    <ProjectReference Include="..\..\src\HttpServices\Tolitech.HttpClients.csproj" />
   </ItemGroup>
 
   <ItemGroup>

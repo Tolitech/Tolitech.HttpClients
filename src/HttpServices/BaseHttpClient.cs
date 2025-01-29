@@ -3,17 +3,17 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
-using Tolitech.HttpServices.Abstractions;
+using Tolitech.HttpClients.Abstractions;
 using Tolitech.Results;
 using Tolitech.Results.Http;
 
-namespace Tolitech.HttpServices;
+namespace Tolitech.HttpClients;
 
 /// <summary>
-/// Base class for making HTTP service requests.
+/// Base class for making HTTP client requests.
 /// </summary>
 /// <param name="httpClient">The HTTP client used to send requests.</param>
-public abstract class BaseHttpService(HttpClient httpClient)
+public abstract class BaseHttpClient(HttpClient httpClient)
 {
     /// <summary>
     /// Sends a POST request to the specified URL with the provided body and headers.

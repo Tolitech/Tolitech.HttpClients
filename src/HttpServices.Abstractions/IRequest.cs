@@ -1,4 +1,4 @@
-﻿namespace Tolitech.HttpServices.Abstractions;
+﻿namespace Tolitech.HttpClients.Abstractions;
 
 /// <summary>
 /// Represents the base contract for HTTP request objects.

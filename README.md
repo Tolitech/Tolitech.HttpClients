@@ -1,17 +1,17 @@
-# Tolitech.HttpServices.Abstractions
+﻿# Tolitech.HttpClients.Abstractions
 
-**Tolitech.HttpServices.Abstractions** provides contracts and abstractions to facilitate the creation of HTTP services. It defines the necessary interfaces to build and consume HTTP APIs in a consistent and extensible way.
+**Tolitech.HttpClients.Abstractions** provides contracts and abstractions to facilitate the creation of HTTP clients. It defines the necessary interfaces to build and consume HTTP APIs in a consistent and extensible way.
 
 ## Features
 
 - Defines fundamental interfaces for HTTP operations:
-  - `IHttpService`: Marks classes that represent HTTP services.
+  - `IHttpClient`: Marks classes that represent HTTP clients.
   - `IRequest`: Base contract for request objects sent to an HTTP endpoint.
   - `IResponse`: Base contract for response objects received from an HTTP endpoint.
 
 ## Purpose
 
-This project serves as a foundation for standardizing HTTP communication in applications, allowing simplified integration with concrete implementations of HTTP services.
+This project serves as a foundation for standardizing HTTP communication in applications, allowing simplified integration with concrete implementations of HTTP clients.
 
 ## Usage
 
@@ -29,22 +29,22 @@ public class MyResponse : IResponse
 }
 ```
 
-# Tolitech.HttpServices
+# Tolitech.HttpClients
 
-**Tolitech.HttpServices** is a practical implementation of an HTTP service based on the abstractions provided by **Tolitech.HttpServices.Abstractions**. This project contains the base class `BaseHttpService`, which offers methods for performing HTTP operations such as GET, POST, PUT, PATCH, and DELETE.
+**Tolitech.HttpClients** is a practical implementation of an HTTP client based on the abstractions provided by **Tolitech.HttpClients.Abstractions**. This project contains the base class `BaseHttpClient`, which offers methods for performing HTTP operations such as GET, POST, PUT, PATCH, and DELETE.
 
 ## Features
 
-- Generic implementation for HTTP services.
+- Generic implementation for HTTP clients.
 - Built-in support for JSON requests and responses.
 - Header management and response validation.
-- Direct integration with the contracts from `Tolitech.HttpServices.Abstractions`.
+- Direct integration with the contracts from `Tolitech.HttpClients.Abstractions`.
 
 ## Main Class
 
-### `BaseHttpService`
+### `BaseHttpClient`
 
-`BaseHttpService` provides methods such as:
+`BaseHttpClient` provides methods such as:
 
 - `GetAsync<TResponse>()`: Performs an HTTP GET request.
 - `PostAsync<TRequest, TResponse>()`: Performs an HTTP POST request.
@@ -55,9 +55,9 @@ public class MyResponse : IResponse
 ### Example Usage
 
 ```csharp
-public class MyHttpService : BaseHttpService
+public class MyHttpClient : BaseHttpClient
 {
-    public MyHttpService(HttpClient httpClient) : base(httpClient) { }
+    public MyHttpClient(HttpClient httpClient) : base(httpClient) { }
 
     public async Task<Result<MyResponse>> GetMessageAsync(string url)
     {
@@ -70,7 +70,7 @@ public class MyHttpService : BaseHttpService
 
 ```csharp
 HttpClient client = new HttpClient();
-var service = new MyHttpService(client);
+var service = new MyHttpClient(client);
 
 var result = await service.GetMessageAsync("https://api.example.com/message");
 
