@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Net;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
@@ -286,6 +287,11 @@ public abstract class BaseHttpClient(HttpClient httpClient)
 
             if (response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.NoContent)
+                {
+                    return result.WithStatusCode((StatusCode)response.StatusCode);
+                }
+
                 // Deserialize successful response
                 TResponse? responseData = await response.Content.ReadFromJsonAsync<TResponse>(cancellationToken).ConfigureAwait(false);
 
