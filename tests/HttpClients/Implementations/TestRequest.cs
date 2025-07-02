@@ -6,7 +6,7 @@ namespace Tolitech.HttpClients.UnitTests.Implementations;
 /// Represents a test implementation of the <see cref="IRequest"/> interface
 /// for unit testing HTTP client requests.
 /// </summary>
-internal class TestRequest : IRequest
+internal sealed class TestRequest : IRequest
 {
     /// <summary>
     /// Gets or sets the data value sent by the test request.
