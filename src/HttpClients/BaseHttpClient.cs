@@ -220,12 +220,9 @@ public abstract class BaseHttpClient(HttpClient httpClient)
             headers.Add("Accept-Language", CultureInfo.CurrentCulture.Name);
         }
 
-        foreach (KeyValuePair<string, string> header in headers)
+        foreach (KeyValuePair<string, string> header in headers.Where(header => !requestMessage.Headers.Contains(header.Key)))
         {
-            if (!requestMessage.Headers.Contains(header.Key))
-            {
-                requestMessage.Headers.Add(header.Key, header.Value);
-            }
+            requestMessage.Headers.Add(header.Key, header.Value);
         }
     }
 
