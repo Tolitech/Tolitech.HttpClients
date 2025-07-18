@@ -16,6 +16,8 @@ namespace Tolitech.HttpClients;
 /// <param name="httpClient">The HTTP client used to send requests.</param>
 public abstract class BaseHttpClient(HttpClient httpClient)
 {
+    private static readonly JsonSerializerOptions WebOptions = JsonSerializerOptions.Web;
+
     /// <summary>
     /// Sends a POST request to the specified URL with the provided body and headers.
     /// </summary>
@@ -220,9 +222,12 @@ public abstract class BaseHttpClient(HttpClient httpClient)
             headers.Add("Accept-Language", CultureInfo.CurrentCulture.Name);
         }
 
-        foreach (KeyValuePair<string, string> header in headers.Where(header => !requestMessage.Headers.Contains(header.Key)))
+        foreach (KeyValuePair<string, string> header in headers)
         {
-            requestMessage.Headers.Add(header.Key, header.Value);
+            if (!requestMessage.Headers.Contains(header.Key))
+            {
+                requestMessage.Headers.Add(header.Key, header.Value);
+            }
         }
     }
 
@@ -241,7 +246,7 @@ public abstract class BaseHttpClient(HttpClient httpClient)
         return request is null
             ? null
             : new StringContent(
-                JsonSerializer.Serialize(request, JsonSerializerOptions.Web),
+                JsonSerializer.Serialize(request, WebOptions),
                 Encoding.UTF8,
                 "application/json");
     }
@@ -280,7 +285,11 @@ public abstract class BaseHttpClient(HttpClient httpClient)
         try
         {
             // Send the request
-            HttpResponseMessage response = await httpClient.SendAsync(requestMessage, cancellationToken).ConfigureAwait(false);
+            HttpResponseMessage response = await httpClient.SendAsync(
+                requestMessage,
+                HttpCompletionOption.ResponseHeadersRead,
+                cancellationToken)
+                    .ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
@@ -290,7 +299,7 @@ public abstract class BaseHttpClient(HttpClient httpClient)
                 }
 
                 // Deserialize successful response
-                TResponse? responseData = await response.Content.ReadFromJsonAsync<TResponse>(cancellationToken).ConfigureAwait(false);
+                TResponse? responseData = await response.Content.ReadFromJsonAsync<TResponse>(WebOptions, cancellationToken).ConfigureAwait(false);
 
                 return responseData is null
                     ? result.WithStatusCode((StatusCode)response.StatusCode)
