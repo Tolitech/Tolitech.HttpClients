@@ -1,34 +1,4 @@
-﻿# Tolitech.HttpClients.Abstractions
-
-**Tolitech.HttpClients.Abstractions** provides contracts and abstractions to facilitate the creation of HTTP clients in .NET applications. It defines essential interfaces to standardize HTTP communication, making API integration simpler, safer, and more extensible.
-
-## Main Interfaces
-
-- `IHttpClient`: Marks classes that represent HTTP clients.
-- `IRequest`: Base contract for request objects sent to HTTP endpoints.
-- `IResponse`: Base contract for response objects received from HTTP endpoints.
-
-## Purpose
-
-Standardize HTTP operations, promoting reuse, testability, and consistent integration between different HTTP client implementations.
-
-## Usage Example
-
-```csharp
-public class MyRequest : IRequest
-{
-    public string Name { get; set; }
-}
-
-public class MyResponse : IResponse
-{
-    public string Message { get; set; }
-}
-```
-
----
-
-# Tolitech.HttpClients
+﻿# Tolitech.HttpClients
 
 **Tolitech.HttpClients** is a generic HTTP client implementation based on the abstractions from the previous project. It provides a powerful base class (`BaseHttpClient`) to perform HTTP operations (GET, POST, PUT, PATCH, DELETE) in a structured, safe, and efficient way.
 
@@ -108,13 +78,3 @@ if (!result.IsSuccess)
     Console.WriteLine($"Detail: {result.Detail}");
 }
 ```
-
-## Unit Testing
-
-The project includes unit test examples to ensure the quality and functionality of the main methods, using Moq and xUnit.
-
----
-
-## Summary
-
-Tolitech.HttpClients.Abstractions and Tolitech.HttpClients together provide a robust, flexible, and modern solution for HTTP communication in .NET applications, promoting standardization, reuse, and ease of maintenance.
