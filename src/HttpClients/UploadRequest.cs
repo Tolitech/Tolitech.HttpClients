@@ -11,7 +11,7 @@ namespace Tolitech.HttpClients;
 /// <param name="FileStream">The stream containing the file's content.</param>
 public record UploadRequest(
     string Key,
-    string FileName,
-    string ContentType,
-    Stream FileStream)
+    string? FileName,
+    string? ContentType,
+    Stream? FileStream)
         : IRequest;

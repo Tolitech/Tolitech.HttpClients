@@ -222,9 +222,30 @@ public abstract class BaseHttpClient(HttpClient httpClient)
         ArgumentNullException.ThrowIfNull(request);
 
         using MultipartFormDataContent content = [];
-        using StreamContent fileContent = new(request.FileStream);
-        fileContent.Headers.ContentType = new MediaTypeHeaderValue(request.ContentType);
-        content.Add(fileContent, request.Key, request.FileName);
+
+        if (request.FileStream is null)
+        {
+            using StreamContent fileContent = new(Stream.Null);
+            content.Add(fileContent, request.Key);
+        }
+        else
+        {
+            using StreamContent fileContent = new(request.FileStream);
+
+            if (!string.IsNullOrEmpty(request.ContentType))
+            {
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(request.ContentType);
+            }
+
+            if (string.IsNullOrEmpty(request.FileName))
+            {
+                content.Add(fileContent, request.Key);
+            }
+            else
+            {
+                content.Add(fileContent, request.Key, request.FileName);
+            }
+        }
 
         return await SendRequestAsync<TResponse>(HttpMethod.Post, url, content, additionalHeaders, cancellationToken).ConfigureAwait(false);
     }
