@@ -225,12 +225,16 @@ public abstract class BaseHttpClient(HttpClient httpClient)
 
         if (request.FileStream is null)
         {
-            using StreamContent fileContent = new(Stream.Null);
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            StreamContent fileContent = new(Stream.Null);
+#pragma warning restore CA2000 // Dispose objects before losing scope
             content.Add(fileContent, request.Key);
         }
         else
         {
-            using StreamContent fileContent = new(request.FileStream);
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            StreamContent fileContent = new(request.FileStream);
+#pragma warning restore CA2000 // Dispose objects before losing scope
 
             if (!string.IsNullOrEmpty(request.ContentType))
             {
