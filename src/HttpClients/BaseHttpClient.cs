@@ -15,9 +15,14 @@ namespace Tolitech.HttpClients;
 /// Base class for making HTTP client requests.
 /// </summary>
 /// <param name="httpClient">The HTTP client used to send requests.</param>
-public abstract class BaseHttpClient(HttpClient httpClient)
+public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
 {
     private static readonly JsonSerializerOptions WebOptions = JsonSerializerOptions.Web;
+
+    /// <summary>
+    /// Gets the base URI of the underlying HTTP client used to send requests.
+    /// </summary>
+    public Uri? BaseAddress => httpClient.BaseAddress;
 
     /// <summary>
     /// Sends a POST request to the specified URL with the provided body and headers.
