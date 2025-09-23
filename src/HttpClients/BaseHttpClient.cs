@@ -33,7 +33,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="body">The request body.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<TResponse>> PostAsync<TRequest, TResponse>(
+    protected async Task<IResult<TResponse>> PostAsync<TRequest, TResponse>(
         string url,
         TRequest body,
         CancellationToken cancellationToken = default)
@@ -53,7 +53,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<TResponse>> PostAsync<TRequest, TResponse>(
+    protected async Task<IResult<TResponse>> PostAsync<TRequest, TResponse>(
         string url,
         TRequest body,
         IDictionary<string, string>? additionalHeaders = null,
@@ -75,7 +75,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="body">The request body.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<TResponse>> PutAsync<TRequest, TResponse>(
+    protected async Task<IResult<TResponse>> PutAsync<TRequest, TResponse>(
         string url,
         TRequest body,
         CancellationToken cancellationToken = default)
@@ -95,7 +95,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<TResponse>> PutAsync<TRequest, TResponse>(
+    protected async Task<IResult<TResponse>> PutAsync<TRequest, TResponse>(
         string url,
         TRequest body,
         IDictionary<string, string>? additionalHeaders = null,
@@ -117,7 +117,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="body">The request body.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<TResponse>> PatchAsync<TRequest, TResponse>(
+    protected async Task<IResult<TResponse>> PatchAsync<TRequest, TResponse>(
         string url,
         TRequest body,
         CancellationToken cancellationToken = default)
@@ -137,7 +137,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<TResponse>> PatchAsync<TRequest, TResponse>(
+    protected async Task<IResult<TResponse>> PatchAsync<TRequest, TResponse>(
         string url,
         TRequest body,
         IDictionary<string, string>? additionalHeaders = null,
@@ -157,7 +157,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="url">The endpoint URL.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<TResponse>> DeleteAsync<TResponse>(
+    protected async Task<IResult<TResponse>> DeleteAsync<TResponse>(
         string url,
         CancellationToken cancellationToken = default)
             where TResponse : IResponse
@@ -173,7 +173,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<TResponse>> DeleteAsync<TResponse>(
+    protected async Task<IResult<TResponse>> DeleteAsync<TResponse>(
         string url,
         IDictionary<string, string>? additionalHeaders = null,
         CancellationToken cancellationToken = default)
@@ -191,7 +191,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="cancellationToken">A token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains a <see cref="Result{TResponse}"/>
     /// representing the server's response to the upload request.</returns>
-    protected async Task<Result<TResponse>> UploadAsync<TResponse>(
+    protected async Task<IResult<TResponse>> UploadAsync<TResponse>(
         string url,
         UploadRequest request,
         CancellationToken cancellationToken = default)
@@ -217,7 +217,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="cancellationToken">A token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
     /// <returns>A <see cref="Result{TResponse}"/> containing the deserialized server response of type <typeparamref
     /// name="TResponse"/>.</returns>
-    protected async Task<Result<TResponse>> UploadAsync<TResponse>(
+    protected async Task<IResult<TResponse>> UploadAsync<TResponse>(
         string url,
         UploadRequest request,
         IDictionary<string, string>? additionalHeaders = null,
@@ -266,7 +266,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="url">The endpoint URL.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<TResponse>> GetAsync<TResponse>(
+    protected async Task<IResult<TResponse>> GetAsync<TResponse>(
         string url,
         CancellationToken cancellationToken = default)
             where TResponse : IResponse
@@ -282,7 +282,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<TResponse>> GetAsync<TResponse>(
+    protected async Task<IResult<TResponse>> GetAsync<TResponse>(
         string url,
         IDictionary<string, string>? additionalHeaders = null,
         CancellationToken cancellationToken = default)
@@ -297,7 +297,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="url">The endpoint URL.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<DownloadResponse>> DownloadAsync(
+    protected async Task<IResult<DownloadResponse>> DownloadAsync(
         string url,
         CancellationToken cancellationToken = default)
     {
@@ -311,7 +311,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    protected async Task<Result<DownloadResponse>> DownloadAsync(
+    protected async Task<IResult<DownloadResponse>> DownloadAsync(
         string url,
         IDictionary<string, string>? additionalHeaders = null,
         CancellationToken cancellationToken = default)
@@ -372,7 +372,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
     /// <param name="additionalHeaders">Additional headers to include in the request.</param>
     /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
     /// <returns>A result containing the response or error details.</returns>
-    private async Task<Result<TResponse>> SendRequestAsync<TResponse>(
+    private async Task<IResult<TResponse>> SendRequestAsync<TResponse>(
         HttpMethod method,
         string url,
         HttpContent? requestBody,
@@ -380,7 +380,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
         CancellationToken cancellationToken = default)
             where TResponse : IResponse
     {
-        Result<TResponse> result = new();
+        IResult<TResponse> result = Result<TResponse>.NoContent();
 
         using HttpRequestMessage requestMessage = new(method, url);
 
@@ -419,7 +419,7 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
                         response.Content.Headers.ContentLength,
                         fileStream);
 
-                    return Result.OK((TResponse)(object)responseStream);
+                    return result.OK((TResponse)(object)responseStream);
                 }
 
                 // Deserialize successful response
@@ -439,12 +439,13 @@ public abstract class BaseHttpClient(HttpClient httpClient) : IHttpClient
 
             string errorContent = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 
-            result.WithDetail(errorContent)
+            result
+                .WithDetail(errorContent)
                 .WithStatusCode((StatusCode)response.StatusCode);
         }
         catch (Exception ex)
         {
-            return result.InternalServerError().WithDetail(ex.Message);
+            return result.InternalServerError(ex.Message);
         }
 
         return result;
