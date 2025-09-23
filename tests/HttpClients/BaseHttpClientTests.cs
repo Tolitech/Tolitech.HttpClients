@@ -27,7 +27,7 @@ public class BaseHttpClientTests
         TestHttpClient client = new(httpClient);
 
         // Act
-        Results.Result<TestResponse> result = await client.CallPostAsync("http://test", new TestRequest());
+        Results.IResult<TestResponse> result = await client.CallPostAsync("http://test", new TestRequest());
 
         // Assert
         Assert.True(result.IsSuccess);
@@ -46,7 +46,7 @@ public class BaseHttpClientTests
         TestHttpClient client = new(httpClient);
 
         // Act
-        Results.Result<TestResponse> result = await client.CallPutAsync("http://test", new TestRequest());
+        Results.IResult<TestResponse> result = await client.CallPutAsync("http://test", new TestRequest());
 
         // Assert
         Assert.True(result.IsSuccess);
@@ -65,7 +65,7 @@ public class BaseHttpClientTests
         TestHttpClient client = new(httpClient);
 
         // Act
-        Results.Result<TestResponse> result = await client.CallPatchAsync("http://test", new TestRequest());
+        Results.IResult<TestResponse> result = await client.CallPatchAsync("http://test", new TestRequest());
 
         // Assert
         Assert.True(result.IsSuccess);
@@ -84,7 +84,7 @@ public class BaseHttpClientTests
         TestHttpClient client = new(httpClient);
 
         // Act
-        Results.Result<TestResponse> result = await client.CallDeleteAsync("http://test");
+        Results.IResult<TestResponse> result = await client.CallDeleteAsync("http://test");
 
         // Assert
         Assert.True(result.IsSuccess);
@@ -103,7 +103,7 @@ public class BaseHttpClientTests
         TestHttpClient client = new(httpClient);
 
         // Act
-        Results.Result<TestResponse> result = await client.CallGetAsync("http://test");
+        Results.IResult<TestResponse> result = await client.CallGetAsync("http://test");
 
         // Assert
         Assert.True(result.IsSuccess);
@@ -122,7 +122,7 @@ public class BaseHttpClientTests
         TestHttpClient client = new(httpClient);
 
         // Act
-        Results.Result<TestResponse> result = await client.CallPostAsync("http://test", new TestRequest());
+        Results.IResult<TestResponse> result = await client.CallPostAsync("http://test", new TestRequest());
 
         // Assert
         Assert.Equal((int)HttpStatusCode.NoContent, (int)result.StatusCode);
@@ -140,7 +140,7 @@ public class BaseHttpClientTests
         TestHttpClient client = new(httpClient);
 
         // Act
-        Results.Result<TestResponse> result = await client.CallPostAsync("http://test", new TestRequest());
+        Results.IResult<TestResponse> result = await client.CallPostAsync("http://test", new TestRequest());
 
         // Assert
         Assert.False(result.IsSuccess);
@@ -158,7 +158,7 @@ public class BaseHttpClientTests
         TestHttpClient client = new(httpClient);
 
         // Act
-        Results.Result<TestResponse> result = await client.CallPostAsync("http://test", new TestRequest());
+        Results.IResult<TestResponse> result = await client.CallPostAsync("http://test", new TestRequest());
 
         // Assert
         Assert.False(result.IsSuccess);

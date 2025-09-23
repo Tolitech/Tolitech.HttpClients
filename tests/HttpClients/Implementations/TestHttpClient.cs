@@ -50,7 +50,7 @@ internal sealed class TestHttpClient(HttpClient client) : BaseHttpClient(client)
     /// <param name="headers">Additional headers.</param>
     /// <param name="token">Cancellation token.</param>
     /// <returns>Request result.</returns>
-    public Task<Result<TestResponse>> CallPostAsync(string url, TestRequest body, IDictionary<string, string>? headers = null, CancellationToken token = default)
+    public Task<IResult<TestResponse>> CallPostAsync(string url, TestRequest body, IDictionary<string, string>? headers = null, CancellationToken token = default)
     {
         return headers is null
             ? PostAsync<TestRequest, TestResponse>(url, body, token)
@@ -65,7 +65,7 @@ internal sealed class TestHttpClient(HttpClient client) : BaseHttpClient(client)
     /// <param name="headers">Additional headers.</param>
     /// <param name="token">Cancellation token.</param>
     /// <returns>Request result.</returns>
-    public Task<Result<TestResponse>> CallPutAsync(string url, TestRequest body, IDictionary<string, string>? headers = null, CancellationToken token = default)
+    public Task<IResult<TestResponse>> CallPutAsync(string url, TestRequest body, IDictionary<string, string>? headers = null, CancellationToken token = default)
     {
         return headers is null
             ? PutAsync<TestRequest, TestResponse>(url, body, token)
@@ -80,7 +80,7 @@ internal sealed class TestHttpClient(HttpClient client) : BaseHttpClient(client)
     /// <param name="headers">Additional headers.</param>
     /// <param name="token">Cancellation token.</param>
     /// <returns>Request result.</returns>
-    public Task<Result<TestResponse>> CallPatchAsync(string url, TestRequest body, IDictionary<string, string>? headers = null, CancellationToken token = default)
+    public Task<IResult<TestResponse>> CallPatchAsync(string url, TestRequest body, IDictionary<string, string>? headers = null, CancellationToken token = default)
     {
         return headers is null
             ? PatchAsync<TestRequest, TestResponse>(url, body, token)
@@ -94,7 +94,7 @@ internal sealed class TestHttpClient(HttpClient client) : BaseHttpClient(client)
     /// <param name="headers">Additional headers.</param>
     /// <param name="token">Cancellation token.</param>
     /// <returns>Request result.</returns>
-    public Task<Result<TestResponse>> CallDeleteAsync(string url, IDictionary<string, string>? headers = null, CancellationToken token = default)
+    public Task<IResult<TestResponse>> CallDeleteAsync(string url, IDictionary<string, string>? headers = null, CancellationToken token = default)
     {
         return headers is null
             ? DeleteAsync<TestResponse>(url, token)
@@ -108,7 +108,7 @@ internal sealed class TestHttpClient(HttpClient client) : BaseHttpClient(client)
     /// <param name="headers">Additional headers.</param>
     /// <param name="token">Cancellation token.</param>
     /// <returns>Request result.</returns>
-    public Task<Result<TestResponse>> CallGetAsync(string url, IDictionary<string, string>? headers = null, CancellationToken token = default)
+    public Task<IResult<TestResponse>> CallGetAsync(string url, IDictionary<string, string>? headers = null, CancellationToken token = default)
     {
         return headers is null
             ? GetAsync<TestResponse>(url, token)
